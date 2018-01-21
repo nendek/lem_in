@@ -98,6 +98,7 @@ LIBFT_SRCS_NAME = ft_atoi.c \
 				  ft_strmap.c \
 				  ft_strmapi.c \
 				  ft_strncat.c \
+				  ft_strndup.c \
 				  ft_strncmp.c \
 				  ft_strncpy.c \
 				  ft_strnequ.c \

@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# include "get_next_line.h"
+
 # define ABS(Value) ((Value < 0) ? (-Value) : (Value))
 # define MAX(x, y) ((x > y) ? x : y)
 # define MIN(x, y) ((x < y) ? x : y)
@@ -71,6 +73,7 @@ size_t				ft_strlen(const char *s);
 size_t				ft_strlen_p(const char *s);
 size_t				ft_strlen_at_p(const char *s, char c);
 char				*ft_strdup(const char *s);
+char				*ft_strndup(const char *s, int start, int end);
 char				*ft_strcpy(char *dest, const char *src);
 char				*ft_strcpy_p(char *dest, const char *src);
 char				*ft_strncpy(char *dest, const char *src, size_t n);

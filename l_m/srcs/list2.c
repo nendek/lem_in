@@ -1,5 +1,5 @@
 
-#include "lem_in.c"
+#include "lem_in.h"
 
 void	lm_room_free(t_room *room)
 {
@@ -15,9 +15,9 @@ void	lm_room_free(t_room *room)
 		}
 }
 
-void	lm_tunnel_free(t_room *tunnel)
+void	lm_tunnel_free(t_tunnel *tunnel)
 {
-	t_room *tmp;
+	t_tunnel *tmp;
 	
 	if (tunnel)
 		while (tunnel)
