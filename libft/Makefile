@@ -6,7 +6,7 @@
 #    By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/15 17:28:03 by pnardozi          #+#    #+#              #
-#    Updated: 2017/12/19 19:08:20 by pnardozi         ###   ########.fr        #
+#    Updated: 2018/01/22 16:48:27 by pnardozi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ LIBFT_SRCS_NAME = ft_atoi.c \
 				  ft_eol.c \
 				  ft_is_in_pos.c \
 				  ft_is_in_at.c \
+				  ft_is_in.c \
 				  ft_itoc.c \
 				  ft_count_var.c \
 				  ft_wputchar.c \

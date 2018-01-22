@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/22 17:38:17 by pnardozi          #+#    #+#             */
+/*   Updated: 2018/01/22 17:39:43 by pnardozi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lem_in.h"
 
@@ -34,7 +45,6 @@ t_room		*lm_pushback_room(t_room **begin_list)
 	else
 		*begin_list = lm_room_lstnew();
 	return (*begin_list);
-
 }
 
 t_tunnel	*lm_tunnel_lstnew(void)
@@ -53,7 +63,6 @@ t_tunnel	*lm_tunnel_lstnew(void)
 	}
 	return (new);
 }
-
 
 t_tunnel	*lm_pushback_tunnel(t_tunnel **begin_list)
 {

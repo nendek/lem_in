@@ -6,7 +6,7 @@
 #    By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/19 14:34:26 by pnardozi          #+#    #+#              #
-#    Updated: 2018/01/17 14:26:49 by pnardozi         ###   ########.fr        #
+#    Updated: 2018/01/22 17:40:47 by pnardozi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,13 @@ LEM_IN_SRCS_PATH = ./l_m/srcs/
 LEM_IN_INCLUDES_PATH = ./l_m/includes/
 LEM_IN_OBJ_PATH = ./l_m/obj/
 
-LEM_IN_SRCS_NAME = lem_in.c \
-		   list.c \
-		   list2.c
+LEM_IN_SRCS_NAME =	lem_in.c \
+		   			list.c \
+		   			list2.c \
+					parse.c \
+					parse_get_room.c \
+					parse_get_ants.c \
+					lm_ft.c
 
 LEM_IN_OBJ_NAME =$(LEM_IN_SRCS_NAME:.c=.o)
 

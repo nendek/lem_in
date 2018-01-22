@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list2.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/22 17:37:46 by pnardozi          #+#    #+#             */
+/*   Updated: 2018/01/22 17:37:55 by pnardozi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lem_in.h"
 
 void	lm_room_free(t_room *room)
 {
 	t_room *tmp;
-	
+
 	if (room)
 		while (room)
 		{
@@ -18,7 +29,7 @@ void	lm_room_free(t_room *room)
 void	lm_tunnel_free(t_tunnel *tunnel)
 {
 	t_tunnel *tmp;
-	
+
 	if (tunnel)
 		while (tunnel)
 		{

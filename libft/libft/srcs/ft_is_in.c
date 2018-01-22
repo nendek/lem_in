@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   ft_is_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/22 11:31:48 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/22 16:56:20 by pnardozi         ###   ########.fr       */
+/*   Created: 2018/01/22 16:47:38 by pnardozi          #+#    #+#             */
+/*   Updated: 2018/01/22 16:48:04 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-
-int	main(void)
+int ft_is_in(char *line, char c)
 {
-	t_tunnel	*tunnel;
-	t_room		*room;
-	
-	tunnel = NULL;
-	room = NULL;
-	lm_parse(&tunnel, &room);
+	int	i;
+	int ret;
 
-	return (0);
+	i = 0;
+	ret = 0;
+	if (line)
+		while(line[i])
+		{
+			if (line[i] == c)
+				ret++;
+			i++;
+		}
+	return (ret);
 }

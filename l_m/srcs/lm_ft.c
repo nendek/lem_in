@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   lm_ft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/22 11:31:48 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/22 16:56:20 by pnardozi         ###   ########.fr       */
+/*   Created: 2018/01/22 17:32:35 by pnardozi          #+#    #+#             */
+/*   Updated: 2018/01/22 17:36:34 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-
-int	main(void)
+int		lm_check_int(long long nb, char *tmp)
 {
-	t_tunnel	*tunnel;
-	t_room		*room;
-	
-	tunnel = NULL;
-	room = NULL;
-	lm_parse(&tunnel, &room);
-
-	return (0);
+	if (nb > INT_MAX || nb < INT_MIN)
+	{
+		free(tmp);
+		return (0);
+	}
+	return (1);
 }

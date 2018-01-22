@@ -6,7 +6,7 @@
 /*   By: pnardozi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 16:07:14 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/17 15:05:48 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/22 16:47:21 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int					ft_is_in_pos(char const *s, int c);
 char				*ft_itoc(int *str);
 int					ft_count_var(long long var);
 int					ft_is_in_at(char *str, char c, int lentgth);
+int					ft_is_in(char *line, char c);
 int					*ft_strdupw(int *str);
 int					*ft_wctoi(wchar_t *str);
 int					ft_count_unsigned_var(unsigned long int var);
