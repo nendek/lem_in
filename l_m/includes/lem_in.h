@@ -53,6 +53,8 @@ t_room				*lm_pushback_room(t_room **begin_list);
 t_tunnel			*lm_tunnel_lstnew(void);
 t_tunnel			*lm_pushback_tunnel(t_tunnel **begin_list);
 
+int				lm_check_name_double(t_room **begin_list, char *name);
+int				lm_check_name(t_room **begin_list, char *name, t_room *tunnel);
 int					lm_get_ants(int *ants, char *line);
 int					lm_get_room(t_room **begin_list, int s_e, int nb_ants, char *line);
 int					lm_parse(t_tunnel **tunnel, t_room **room);

@@ -53,3 +53,43 @@ void	lm_free_tab(char **tab)
 	}
 	free(tab);
 }
+
+int	lm_check_name_double(t_room **begin_list, char *name)
+{
+	t_room *lst;
+
+	lst = *begin_list;
+	if (lst)
+		while (lst->next)
+		{
+			if ((ft_strcmp(lst->name, name)) == 0)
+			{
+				ft_printf("Erreur nom en double\n");
+				return (0);
+			}
+			lst = lst->next;
+		}
+	return (1);
+}
+
+int	lm_check_name(t_room **begin_list, char *name, t_room *tunnel)
+{
+	t_room	*lst;
+	int	ok;
+
+	ok = 0;
+	lst = *begin_list;
+	if (lst)
+		while (lst)
+		{
+			if ((ft_strcmp(lst->name, name)) == 0)
+			{
+				tunnel = lst;
+				ok++;
+			}
+			lst = lst->next;
+		}
+	if (ok == 0)
+		ft_printf("Erreur le nom de room n'existe pas\n'");
+	return (ok);
+}
