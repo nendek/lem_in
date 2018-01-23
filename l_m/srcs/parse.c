@@ -6,43 +6,17 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:50:31 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/22 16:56:17 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/23 12:51:37 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int	lm_get_tunnel(t_tunnel **tunnel, t_room **room, char *line)
-{
-	int		i;
-	int		j;
-	t_tunnel	*lst;
 
-	i = 0;
-	lst = lm_pushback_tunnel(tunnel);
-	while (line[i + 1] != '-')
-		i++;
-	lst->name1 = ft_strndup(line, 0, i);
-	if (!(lm_check_name(room, lst->name1, lst->room1)))
-		return (0);
-	i += 2;
-	j = i;
-	while (line[i + 1] != '\0')
-		i++;
-	lst->name2 = ft_strndup(line, j, i);
-	if (!(lm_check_name(room, lst->name2, lst->room2)))
-		return (0);
-	if ((ft_strcmp(lst->name1, lst->name2)) == 0)
-	{
-		ft_printf("Erreur : nom identique");
-		return (0);
-	}
-	return (1);
-}
 
 int	lm_parse(t_tunnel **tunnel, t_room **room)
 {
-	char		*line;
+	char	*line;
 	int		ants;
 	int		start_end;
 	int		sec_part;
@@ -50,12 +24,8 @@ int	lm_parse(t_tunnel **tunnel, t_room **room)
 	sec_part = 0;
 	get_next_line_multi(0, &line);
 	if (!(lm_get_ants(&ants, line)))
-	{
-		ft_printf("Defaut nombres de fourmis.\n");
-		free(line);
 		return (0);
-	}
-	while (get_next_line_multi(0, &line) >= 0)
+	while (get_next_line_multi(0, &line) > 0)
 	{
 		ft_printf("%s\n", line);
 		if (line[0] == '#')
@@ -80,7 +50,7 @@ int	lm_parse(t_tunnel **tunnel, t_room **room)
 		else if ((ft_is_in(line, '-')) == 1)
 		{
 			sec_part = 1;
-			if (!lm_get_tunnel(tunnel, room, line))
+			if (!(lm_get_tunnel(tunnel, room, line)))
 			{
 				free(line);
 				return (0);

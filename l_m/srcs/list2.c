@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 17:37:46 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/22 17:37:55 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/23 12:39:34 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	lm_check_name_double(t_room **begin_list, char *name)
 	return (1);
 }
 
-int	lm_check_name(t_room **begin_list, char *name, t_room *tunnel)
+int	lm_check_name(t_room **begin_list, char *name, t_room **tunnel)
 {
 	t_room	*lst;
 	int	ok;
@@ -84,7 +84,7 @@ int	lm_check_name(t_room **begin_list, char *name, t_room *tunnel)
 		{
 			if ((ft_strcmp(lst->name, name)) == 0)
 			{
-				tunnel = lst;
+				*tunnel = lst;
 				ok++;
 			}
 			lst = lst->next;

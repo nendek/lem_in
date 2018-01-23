@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:50:58 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/22 17:37:27 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/23 12:57:24 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,14 @@ t_room				*lm_pushback_room(t_room **begin_list);
 t_tunnel			*lm_tunnel_lstnew(void);
 t_tunnel			*lm_pushback_tunnel(t_tunnel **begin_list);
 
-int				lm_check_name_double(t_room **begin_list, char *name);
-int				lm_check_name(t_room **begin_list, char *name, t_room *tunnel);
+int					lm_check_name_double(t_room **begin_list, char *name);
+int					lm_check_name(t_room **begin_list, char *name, t_room **tunnel);
 int					lm_get_ants(int *ants, char *line);
 int					lm_get_room(t_room **begin_list, int s_e, int nb_ants, char *line);
 int					lm_parse(t_tunnel **tunnel, t_room **room);
 int					lm_check_int(long long nb, char *tmp);
+int					lm_check_tunnel_double(t_tunnel **begin_list, char *name1, char *name2);
+int					lm_get_tunnel(t_tunnel **tunnel, t_room **room, char *line);
+
 
 #endif
