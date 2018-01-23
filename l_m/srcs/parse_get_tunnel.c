@@ -6,13 +6,23 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:39:49 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/23 12:49:38 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/23 16:47:15 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int	lm_get_tunnel(t_tunnel **tunnel, t_room **room, char *line)
+static int		check_name(char *name1, char *name2)
+{
+	if ((ft_strcmp(name1, name2)) == 0)
+	{
+		ft_printf("Erreur : nom identique");
+		return (0);
+	}
+	return (1);
+}
+
+int				lm_get_tunnel(t_tunnel **tunnel, t_room **room, char *line)
 {
 	int			i;
 	int			j;
@@ -34,11 +44,8 @@ int	lm_get_tunnel(t_tunnel **tunnel, t_room **room, char *line)
 		return (0);
 	if (!(lm_check_name(room, lst->name2, &(lst->room2))))
 		return (0);
-	if ((ft_strcmp(lst->name1, lst->name2)) == 0)
-	{
-		ft_printf("Erreur : nom identique");
+	if (!(check_name(lst->name1, lst->name2)))
 		return (0);
-	}
 	if (!(lm_check_tunnel_double(tunnel, lst->name1, lst->name2)))
 		return (0);
 	return (1);

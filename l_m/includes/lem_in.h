@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:50:58 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/23 12:57:24 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/23 17:25:43 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@
 
 # define ROOM_START 1
 # define ROOM_END 2
+
+typedef struct			s_index
+{
+	int			ants;
+	int			start_end;
+	int			sec_part;
+}						t_index;
 
 typedef struct			s_pos
 {
@@ -53,7 +60,7 @@ t_room				*lm_pushback_room(t_room **begin_list);
 t_tunnel			*lm_tunnel_lstnew(void);
 t_tunnel			*lm_pushback_tunnel(t_tunnel **begin_list);
 
-int					lm_check_name_double(t_room **begin_list, char *name);
+int					lm_check_name_double(t_room **begin_list, char *name, int p_x, int p_y);
 int					lm_check_name(t_room **begin_list, char *name, t_room **tunnel);
 int					lm_get_ants(int *ants, char *line);
 int					lm_get_room(t_room **begin_list, int s_e, int nb_ants, char *line);
@@ -61,6 +68,11 @@ int					lm_parse(t_tunnel **tunnel, t_room **room);
 int					lm_check_int(long long nb, char *tmp);
 int					lm_check_tunnel_double(t_tunnel **begin_list, char *name1, char *name2);
 int					lm_get_tunnel(t_tunnel **tunnel, t_room **room, char *line);
+int					lm_check_s(t_room **begin_list);
+int					lm_check_e(t_room **begin_list);
+int					lm_check_s_e(t_room **begin_list);
+
+
 
 
 #endif

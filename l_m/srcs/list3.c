@@ -6,13 +6,13 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:39:02 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/23 12:39:29 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/23 16:27:51 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int	lm_check_tunnel_double(t_tunnel **begin_list, char *name1, char *name2)
+int		lm_check_tunnel_double(t_tunnel **begin_list, char *name1, char *name2)
 {
 	t_tunnel *lst;
 
@@ -20,7 +20,8 @@ int	lm_check_tunnel_double(t_tunnel **begin_list, char *name1, char *name2)
 	if (lst)
 		while (lst->next)
 		{
-			if ((ft_strcmp(lst->name1, name1)) == 0 && (ft_strcmp(lst->name2, name2)) == 0)
+			if ((ft_strcmp(lst->name1, name1)) == 0 &&\
+					(ft_strcmp(lst->name2, name2)) == 0)
 			{
 				ft_printf("Erreur : tunnel en double\n");
 				return (0);
@@ -28,4 +29,56 @@ int	lm_check_tunnel_double(t_tunnel **begin_list, char *name1, char *name2)
 			lst = lst->next;
 		}
 	return (1);
+}
+
+int		lm_check_s(t_room **begin_list)
+{
+	int		i;
+	t_room	*lst;
+
+	lst = *begin_list;
+	i = 0;
+	if (lst)
+		while (lst)
+		{
+			if (lst->start_end == 1)
+				i++;
+			lst = lst->next;
+		}
+	return (i);
+}
+
+int		lm_check_e(t_room **begin_list)
+{
+	int		i;
+	t_room	*lst;
+
+	lst = *begin_list;
+	i = 0;
+	if (lst)
+		while (lst)
+		{
+			if (lst->start_end == 2)
+				i++;
+			lst = lst->next;
+		}
+	return (i);
+}
+
+int		lm_check_s_e(t_room **begin_list)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	if (lm_check_s(begin_list))
+		i = 1;
+	else
+		ft_printf("Erreur: pas de start\n");
+	if (lm_check_e(begin_list))
+		j = 1;
+	else
+		ft_printf("Erreur: pas de end\n");
+	return (i + j);
 }

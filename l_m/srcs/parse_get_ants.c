@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 17:30:59 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/23 12:49:54 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/23 15:10:27 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int		lm_get_ants(int *ants, char *line)
 		i++;
 	}
 	nb_ants = ft_long_atoi(line);
-	if (nb_ants > INT_MAX || nb_ants < 1)
+	if (nb_ants > INT_MAX)
 	{
 		free(line);
-		ft_printf("Defaut nombres de fourmisi negatif.\n");
+		ft_printf("Defaut nombres de fourmis.\n");
 		return (0);
 	}
 	*ants = nb_ants;

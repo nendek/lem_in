@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 17:37:46 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/23 12:39:34 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/23 16:27:16 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	lm_free_tab(char **tab)
 	free(tab);
 }
 
-int	lm_check_name_double(t_room **begin_list, char *name)
+int		lm_check_name_double(t_room **begin_list, char *name, int p_x, int p_y)
 {
 	t_room *lst;
 
@@ -62,6 +62,11 @@ int	lm_check_name_double(t_room **begin_list, char *name)
 	if (lst)
 		while (lst->next)
 		{
+			if (lst->pos.x == p_x && lst->pos.y == p_y)
+			{
+				ft_printf("Erreur: coordonne en double\n");
+				return (0);
+			}
 			if ((ft_strcmp(lst->name, name)) == 0)
 			{
 				ft_printf("Erreur nom en double\n");
@@ -72,10 +77,10 @@ int	lm_check_name_double(t_room **begin_list, char *name)
 	return (1);
 }
 
-int	lm_check_name(t_room **begin_list, char *name, t_room **tunnel)
+int		lm_check_name(t_room **begin_list, char *name, t_room **tunnel)
 {
 	t_room	*lst;
-	int	ok;
+	int		ok;
 
 	ok = 0;
 	lst = *begin_list;

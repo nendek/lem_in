@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:49:05 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/22 17:43:00 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/23 16:46:36 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int		lm_get_pos(t_room *room, char *line, int *i, int *j)
 	if (!(lm_get_pos2(line, i, j, tmp)))
 		return (0);
 	free(tmp);
-	if(!(tmp = ft_strndup(line, *j, *i)))
+	if (!(tmp = ft_strndup(line, *j, *i)))
 		return (0);
 	nb = ft_long_atoi(tmp);
 	if (!(lm_check_int(nb, tmp)))
@@ -70,11 +70,11 @@ static int		lm_get_pos(t_room *room, char *line, int *i, int *j)
 }
 
 int				lm_get_room(t_room **begin_list, int s_e, int nb_ants,\
-		char *line)
+					char *line)
 {
 	int			i;
 	int			j;
-	t_room			*room;
+	t_room		*room;
 
 	i = 0;
 	room = lm_pushback_room(begin_list);
@@ -83,10 +83,11 @@ int				lm_get_room(t_room **begin_list, int s_e, int nb_ants,\
 		i++;
 	if (!(room->name = ft_strndup(line, 0, i)))
 		return (0);
-	if (!(lm_check_name_double(begin_list, room->name)))
-		return (0);
 	if (!(lm_get_pos(room, line, &i, &j)))
 		return (0);
-	ft_printf("name = %s, start_end = %d, ants = %d, pos.x = %d, pos.y = %d\n", room->name, room->start_end, room->ants, room->pos.x, room->pos.y);
+	if (!(lm_check_name_double(begin_list, room->name,\
+					room->pos.x, room->pos.y)))
+		return (0);
+	//ft_printf("name = %s, start_end = %d, ants = %d, pos.x = %d, pos.y = %d\n", room->name, room->start_end, room->ants, room->pos.x, room->pos.y);
 	return (1);
 }
