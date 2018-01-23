@@ -14,7 +14,6 @@
 
 //maps vide
 //pas de tunnel (check si start et end son connecter)
-//trop grande coordonne
 
 static int lm_parse_tunnel(t_room **room, t_tunnel **tunnel, int start_end, char *line)
 {
@@ -37,17 +36,17 @@ static int lm_parse_tunnel(t_room **room, t_tunnel **tunnel, int start_end, char
 	return (1);
 }
 
-static int lm_parse_room(t_room **room, int *start_end, int ants, char *line)
+static int lm_parse_room(t_room **room, t_index *index, char *line)
 {
-	if (!(lm_get_room(room, *start_end, ants, line)) || sec_part != 0)
+	if (!(lm_get_room(room, index->start_end, index->ants, line)) || index->sec_part != 0)
 	{
-		if (sec_part != 0)
+		if (index->sec_part != 0)
 			ft_printf("Erreur: room au mauvais endroit\n");
 		free(line);
 		return (0);
 	}
-	if (*start_end != 0)
-		*start_end = 0;
+	if (index->start_end != 0)
+		index->start_end = 0;
 	return (1);
 }
 
@@ -94,40 +93,47 @@ static int lm_parse_se(char *line, t_room **room, int *start_end)
 	return (1);
 }
 
+static int	lm_parse2(t_tunnel **tunnel, t_room **room, t_index *index, char *line)
+{
+	if (line[0] == '#')
+	{
+		if (!(lm_parse_se(line, room, &index->start_end)))
+			return (0);
+	}
+	else if ((ft_is_in(line, ' ')) == 2)
+	{
+		if (!(lm_parse_room(room, index, line)))
+			return (0);
+	}
+	else if ((ft_is_in(line, '-')) == 1)
+	{
+		index->sec_part = 1;
+		if (!(lm_parse_tunnel(room, tunnel, index->start_end, line)))
+			return (0);
+	}
+	else
+	{
+		ft_printf("Erreur format\n");
+		free(line);
+		return (0);
+	}
+	return (1);
+}
+
 int	lm_parse(t_tunnel **tunnel, t_room **room)
 {
 	char		*line;
 	t_index		index;
 
-	sec_part = 0;
+	index.sec_part = 0;
 	get_next_line_multi(0, &line);
-	if (!(lm_get_ants(&index->ants, line)))
+	if (!(lm_get_ants(&index.ants, line)))
 		return (0);
 	while (get_next_line_multi(0, &line) > 0)
 	{
 		ft_printf("%s\n", line);
-		if (line[0] == '#')
-		{
-			if (!(lm_parse_se(line, room, &start_end)))
-				return (0);
-		}
-		else if ((ft_is_in(line, ' ')) == 2)
-		{
-			if (!(lm_parse_room(room, &start_end, ants, line)))
-				return (0);
-		}
-		else if ((ft_is_in(line, '-')) == 1)
-		{
-			sec_part = 1;
-			if (!(lm_parse_tunnel(room, tunnel, start_end, line)))
-				return (0);
-		}
-		else
-		{
-			ft_printf("Erreur format\n");
-			free(line);
+		if (!(lm_parse2(tunnel, room, &index, line)))
 			return (0);
-		}
 		free(line);
 	}
 	return (1);
