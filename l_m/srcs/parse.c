@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:50:31 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/23 17:27:27 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/24 17:00:51 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 //maps vide
 //pas de tunnel (check si start et end son connecter)
 
-static int lm_parse_tunnel(t_room **room, t_tunnel **tunnel, int start_end, char *line)
+static int		lm_parse_tunnel(t_room **room, t_tunnel **tunnel,\
+					int start_end, char *line)
 {
 	if (start_end != 0)
 	{
@@ -36,9 +37,10 @@ static int lm_parse_tunnel(t_room **room, t_tunnel **tunnel, int start_end, char
 	return (1);
 }
 
-static int lm_parse_room(t_room **room, t_index *index, char *line)
+static int		lm_parse_room(t_room **room, t_index *index, char *line)
 {
-	if (!(lm_get_room(room, index->start_end, index->ants, line)) || index->sec_part != 0)
+	if (!(lm_get_room(room, index->start_end, index->ants, line))\
+					|| index->sec_part != 0)
 	{
 		if (index->sec_part != 0)
 			ft_printf("Erreur: room au mauvais endroit\n");
@@ -50,7 +52,7 @@ static int lm_parse_room(t_room **room, t_index *index, char *line)
 	return (1);
 }
 
-static int lm_parse_se2(t_room **room, int *start_end)
+static int		lm_parse_se2(t_room **room, int *start_end)
 {
 	if (*start_end != 0)
 	{
@@ -66,7 +68,7 @@ static int lm_parse_se2(t_room **room, int *start_end)
 	return (1);
 }
 
-static int lm_parse_se(char *line, t_room **room, int *start_end)
+static int		lm_parse_se(char *line, t_room **room, int *start_end)
 {
 	if (ft_strcmp(line, "##start") == 0)
 	{
@@ -93,7 +95,8 @@ static int lm_parse_se(char *line, t_room **room, int *start_end)
 	return (1);
 }
 
-static int	lm_parse2(t_tunnel **tunnel, t_room **room, t_index *index, char *line)
+static int		lm_parse2(t_tunnel **tunnel, t_room **room,\
+					t_index *index, char *line)
 {
 	if (line[0] == '#')
 	{
@@ -120,16 +123,18 @@ static int	lm_parse2(t_tunnel **tunnel, t_room **room, t_index *index, char *lin
 	return (1);
 }
 
-int	lm_parse(t_tunnel **tunnel, t_room **room)
+int				lm_parse(t_tunnel **tunnel, t_room **room)
 {
 	char		*line;
 	t_index		index;
 
 	index.sec_part = 0;
-	get_next_line_multi(0, &line);
+	index.start_end = 0;
+	get_next_line_one_file(0, &line);
 	if (!(lm_get_ants(&index.ants, line)))
 		return (0);
-	while (get_next_line_multi(0, &line) > 0)
+	free(line);
+	while (get_next_line_one_file(0, &line) > 0)
 	{
 		ft_printf("%s\n", line);
 		if (!(lm_parse2(tunnel, room, &index, line)))
