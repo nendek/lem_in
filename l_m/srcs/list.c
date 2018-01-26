@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 17:38:17 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/23 12:26:55 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/25 16:19:54 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_tunnel	*lm_tunnel_lstnew(void)
 		new->name2 = NULL;
 		new->room1 = NULL;
 		new->room2 = NULL;
-		new->weight = 1;
+		new->visit = 0;
 		new->next = NULL;
 	}
 	return (new);
