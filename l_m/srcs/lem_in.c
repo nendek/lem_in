@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:31:48 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/26 16:15:08 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/27 16:14:39 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,40 +29,54 @@ char			*lm_search_s_e(t_room **begin_list, int s_e)
 	return (tmp);
 }
 
-int				lm_coutn_link(t_tunnel **begin_list, char *name)
-{
-	int			i;
-	t_tunnel	*lst;
-
-	lst = *begin_list;
-	i = 0;
-	if (lst)
-		while (lst)
-		{
-			if (ft_strcmp(lst->name1, name) == 0)
-				i++;
-			lst = lst->next;
-		}
-	return (i);
-}
-
-t_tunnel		*lm_search_tunnel(t_tunnel **begin_list, char *name)
+t_tunnel		*lm_search_tunnel(t_tunnel **begin_list, char *name, int nb_sol)
 {
 	t_tunnel *lst;
 	int			i;
-	int			links;
+	static int	change_sol = 0;
+	static int	tmp = 0;
 
-	links = lm_coutn_link(begin_list, name);
-	ft_printf("name = %s, link = %d\n", name, links);
+	if (tmp != nb_sol)
+	{
+		change_sol = 1;
+		tmp = nb_sol;
+	}
 	i = 0;
 	lst = *begin_list;
 	if (lst)
 		while (lst)
 		{
-			if (ft_strcmp(lst->name2, name) == 0 && lst->visit <= links)
+			if (change_sol == 0)
 			{
-				i = 1;
-				break ;
+				if (ft_strcmp(lst->name2, name) == 0 && lst->visit == 0)
+				{
+					i = 1;
+					break ;
+				}
+			}
+			if (change_sol == 1)
+			{
+				if (ft_strcmp(lst->name2, name) == 0 && lst->visit == 0)
+				{
+					change_sol = 2;
+					i = 1;
+					break ;
+				}
+			}
+			if (change_sol == 2)
+			{
+				if (lst->visit == 0)
+					if (ft_strcmp(lst->name2, name) == 0)
+					{
+						i = 1;
+						break ;
+					}
+				if (lst->visit != 0 && change_sol == 2)
+					if (ft_strcmp(lst->name2, name) == 0)
+					{
+						i = 1;
+						break ;
+					}
 			}
 			lst = lst->next;
 		}
@@ -74,13 +88,18 @@ t_tunnel		*lm_search_tunnel(t_tunnel **begin_list, char *name)
 int				lm_algo(t_tunnel **begin_list, char *start, char *end)
 {
 	t_tunnel	*tunnel;
+	static int	nb_sol = 0;
 
-	while ((tunnel = lm_search_tunnel(begin_list, end)) != NULL)
+	while ((tunnel = lm_search_tunnel(begin_list, end, nb_sol)) != NULL)
 	{
+		ft_printf("nb sol = %d\n", nb_sol);
 		tunnel->visit += 1;
 		ft_printf("tunnel = %s-%s\n", tunnel->name1, tunnel->name2);
 		if (ft_strcmp(tunnel->name1, start) == 0)
+		{
 			ft_printf("t as trouver start encule\n");
+			nb_sol++;
+		}
 		lm_algo(begin_list, start, tunnel->name1);
 	}
 	return (0);
