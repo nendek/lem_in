@@ -36,8 +36,9 @@ typedef struct			s_room
 {
 	char				*name;
 	t_pos				pos;
-	int					ants;
-	int					start_end;
+	int				ants;
+	int				start_end;
+	int				visit;
 	struct s_room		*next;
 }						t_room;
 

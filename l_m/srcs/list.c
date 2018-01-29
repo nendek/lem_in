@@ -25,6 +25,7 @@ t_room		*lm_room_lstnew(void)
 		new->pos.y = 0;
 		new->ants = 0;
 		new->start_end = 0;
+		new->visit = 0;
 		new->next = NULL;
 	}
 	return (new);

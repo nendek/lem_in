@@ -25,14 +25,16 @@ char			*lm_search_s_e(t_room **begin_list, int s_e)
 				break ;
 			lst = lst->next;
 		}
+	if (s_e == 2)
+		lst->visit = 1;
 	tmp = ft_strdup(lst->name);
 	return (tmp);
 }
 
-t_tunnel		*lm_search_tunnel(t_tunnel **begin_list, char *name, int nb_sol)
+t_room		*lm_search_room(t_tunnel **begin_list, char *name, int nb_sol, char *start)
 {
-	t_tunnel *lst;
-	int			i;
+	t_tunnel	*lst;
+	int		i;
 	static int	change_sol = 0;
 	static int	tmp = 0;
 
@@ -43,52 +45,69 @@ t_tunnel		*lm_search_tunnel(t_tunnel **begin_list, char *name, int nb_sol)
 	}
 	i = 0;
 	lst = *begin_list;
+	if (ft_strcmp(name, start) == 0)
+		return (NULL);
 	if (lst)
 		while (lst)
 		{
 			if (change_sol != 2)
 			{
-				if (ft_strcmp(lst->name2, name) == 0 && lst->visit == 0)
+				if (ft_strcmp(lst->name1, name) == 0 && lst->room2->visit == 0)	
 				{
 					if (change_sol == 1)
 						change_sol = 2;
-					i = 1;
-					break ;
+					return (lst->room2);
+				}
+				if (ft_strcmp(lst->name2, name) == 0 && lst->room1->visit == 0)
+				{
+					if (change_sol == 1)
+						change_sol = 2;
+					return (lst->room1);
 				}
 			}
 			else
 			{
-				if (ft_strcmp(lst->name2, name) == 0)
+				t_tunnel *lst_tmp;
+
+				lst_tmp = lst;
+				while (lst_tmp)
 				{
-					i = 1;
-					break ;
+					if (ft_strcmp(lst->name1, name) == 0 && lst->room2->visit == 0)	
+						return (lst_tmp->room2);
+					if (ft_strcmp(lst->name2, name) == 0 && lst->room1->visit == 0)
+						return (lst_tmp->room1);
+					lst_tmp = lst_tmp->next;
 				}
+				if (ft_strcmp(lst->name1, name) == 0)
+					return (lst->room2);
+				if (ft_strcmp(lst->name2, name) == 0)
+					return (lst->room1);
 			}
 			lst = lst->next;
 		}
-	if (i == 1)
-		return (lst);
 	return (NULL);
 }
 
-int				lm_algo(t_tunnel **begin_list, char *start, char *end)
+int	lm_algo(t_tunnel **lst_tunnel, t_room **lst_room, char *start, char *end, char *end2)
 {
-	t_tunnel	*tunnel;
+	t_room		*room;
 	static int	nb_sol = 0;
 
-	while ((tunnel = lm_search_tunnel(begin_list, end, nb_sol)) != NULL)
+	while ((room = lm_search_room(lst_tunnel, end, nb_sol, start)) != NULL)
 	{
 		ft_printf("nb sol = %d\n", nb_sol);
-		tunnel->visit += 1;
-		ft_printf("tunnel = %s-%s\n", tunnel->name1, tunnel->name2);
-		if (ft_strcmp(tunnel->name1, start) == 0)
+		room->visit += 1;
+		ft_printf("room = %s.\n", room->name);
+		if (room->start_end == 1)
 		{
-			ft_printf("t as trouver start encule\n");
 			nb_sol++;
+			ft_printf("t as trouver start enculer\n");
+			lm_algo(lst_tunnel, lst_room, start, end2, end2);
 		}
-		lm_algo(begin_list, start, tunnel->name1);
+		else
+			lm_algo(lst_tunnel, lst_room, start, room->name, end2);
 	}
-	return (0);
+	return (1);
 }
 
 int		main(void)
@@ -105,7 +124,7 @@ int		main(void)
 	lm_parse(&tunnel, &room);
 	start = lm_search_s_e(&room, 1);
 	end = lm_search_s_e(&room, 2);
-	lm_algo(&tunnel, start, end);
+	lm_algo(&tunnel, &room, start, end, end);
 
 	free(start);
 	free(end);

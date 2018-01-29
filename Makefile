@@ -25,7 +25,7 @@ LEM_IN_SRCS_PATH = ./l_m/srcs/
 LEM_IN_INCLUDES_PATH = ./l_m/includes/
 LEM_IN_OBJ_PATH = ./l_m/obj/
 
-LEM_IN_SRCS_NAME =	lem_in.c \
+LEM_IN_SRCS_NAME =	lem_in2.c \
 		   			list.c \
 		   			list2.c \
 					list3.c \
