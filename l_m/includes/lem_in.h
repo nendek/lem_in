@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:50:58 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/26 11:46:22 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/30 15:09:32 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,10 @@ typedef struct			s_room
 {
 	char				*name;
 	t_pos				pos;
-	int				ants;
-	int				start_end;
-	int				visit;
+	int					ants;
+	int					start_end;
+	int					visit;
+	int					visit_check;
 	struct s_room		*next;
 }						t_room;
 

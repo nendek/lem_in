@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 17:38:17 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/25 16:19:54 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/30 16:28:52 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_room		*lm_room_lstnew(void)
 		new->ants = 0;
 		new->start_end = 0;
 		new->visit = 0;
+		new->visit_check = 0;
 		new->next = NULL;
 	}
 	return (new);
