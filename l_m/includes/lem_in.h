@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:50:58 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/30 15:09:32 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/02 15:54:03 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,15 @@ typedef struct			s_room
 	int					ants;
 	int					start_end;
 	int					visit;
-	int					visit_check;
+	int					grey;
 	struct s_room		*next;
 }						t_room;
+
+typedef struct			s_tovisit
+{
+	char				*name;
+	struct s_tovisit	*next;
+}						t_tovisit;
 
 typedef struct			s_tunnel
 {
@@ -49,7 +55,6 @@ typedef struct			s_tunnel
 	char				*name2;
 	t_room				*room1;
 	t_room				*room2;
-	int					visit;
 	struct s_tunnel		*next;
 }						t_tunnel;
 
@@ -57,6 +62,8 @@ void					lm_room_free(t_room *room);
 void					lm_tunnel_free(t_tunnel *tunnel);
 void					lm_free_tab(char **tab);
 
+t_tovisit				*lm_tovisit_lstnew(char *name);
+t_tovisit				*lm_pushback_tovisit(t_tovisit **begin_list, char *name);
 t_room					*lm_room_lstnew(void);
 t_room					*lm_pushback_room(t_room **begin_list);
 t_tunnel				*lm_tunnel_lstnew(void);
