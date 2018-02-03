@@ -6,17 +6,17 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 17:38:17 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/02 15:40:43 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/03 18:17:21 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_tovisit	*lm_tovisit_lstnew(char *name)
+t_visit	*lm_tovisit_lstnew(char *name)
 {
-	t_tovisit *new;
+	t_visit *new;
 
-	if (!(new = malloc(sizeof(t_tovisit))))
+	if (!(new = malloc(sizeof(t_visit))))
 		return (NULL);
 	if (new != NULL)
 	{
@@ -26,9 +26,9 @@ t_tovisit	*lm_tovisit_lstnew(char *name)
 	return (new);
 }
 
-int		lm_pushback_tovisit(t_tovisit **begin_list, char *name)
+int		lm_pushback_tovisit(t_visit **begin_list, char *name)
 {
-	t_tovisit *lst;
+	t_visit *lst;
 
 	lst = *begin_list;
 	if (lst)
@@ -39,6 +39,7 @@ int		lm_pushback_tovisit(t_tovisit **begin_list, char *name)
 	}
 	else
 		*begin_list =  lm_tovisit_lstnew(name);
+	return (0);
 }
 
 t_room		*lm_room_lstnew(void)
