@@ -43,11 +43,11 @@ typedef struct			s_room
 	struct s_room		*next;
 }						t_room;
 
-typedef struct			s_tovisit
+typedef struct			s_visit
 {
-	char				*name;
+	t_room			*room;
 	struct s_tovisit	*next;
-}						t_tovisit;
+}						t_visit;
 
 typedef struct			s_tunnel
 {

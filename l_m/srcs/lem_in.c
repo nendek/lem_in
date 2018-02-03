@@ -29,17 +29,11 @@ char			*lm_search_s_e(t_room **begin_list, int s_e)
 	return (tmp);
 }
 
-int			lm_bfs(t_tunnel **begin_list, char *start)
+int			lm_bfs(t_tunnel **lst_tunnel, t_visit **lst_visited)
 {
-	t_tovisit	*to_visit;
-	int			i;
-	int			j;
-
-	i = 0;
-	j = 0;
-	lm_pushback_tovisit(&to_visit, start);
-	lm_room_visited(begin_list, start);
-	while (
+	t_room		
+	//cherche start, on la visite et on met ses fils dans la liste des a visiter
+	
 
 	return (0);
 }
@@ -50,6 +44,7 @@ int		main(void)
 	t_room		*room;
 	char		*start;
 	char		*end;
+	t_visit		*visited;
 
 	end = NULL;
 	start = NULL;
@@ -58,6 +53,7 @@ int		main(void)
 	lm_parse(&tunnel, &room);
 	start = lm_search_s_e(&room, 1);
 	end = lm_search_s_e(&room, 2);
+	lm_bfs(&tunnel, &visited);
 
 	free(start);
 	free(end);
