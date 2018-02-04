@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 17:38:17 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/03 18:17:21 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/04 15:13:09 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,21 @@ t_visit	*lm_tovisit_lstnew(char *name)
 		new->next = NULL;
 	}
 	return (new);
+}
+
+int		lm_pushfront_tovisit(t_visit **begin_list, char *name)
+{
+	t_visit *lst;
+
+	if (*begin_list)
+	{
+		lst = lm_tovisit_lstnew(name);
+		lst->next = *begin_list;
+		*begin_list = lst;
+	}
+	else
+		*begin_list = lm_tovisit_lstnew(name);
+	return (0);
 }
 
 int		lm_pushback_tovisit(t_visit **begin_list, char *name)

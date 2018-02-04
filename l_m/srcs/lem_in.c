@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:31:48 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/03 22:58:06 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/04 18:17:27 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,10 +133,12 @@ int			lm_bfs(t_tunnel **lst_tunnel, t_visit **lst_visited, t_visit **lst_tovisit
 		ft_printf("a visiter = %s\n", to_visit->name);
 		to_visit = to_visit->next;
 	}
-	//
-
 	return (0);
 }
+
+int		lm_find_road(t_visit **lst_road, t_visit **lst_visited, t_tunnel **lst_tunnel, char *end)
+{
+
 
 int		main(void)
 {
@@ -146,6 +148,7 @@ int		main(void)
 	char		*end;
 	t_visit		*visited;
 	t_visit		*to_visit;
+	t_visit		*road;
 
 	end = NULL;
 	start = NULL;
@@ -155,6 +158,8 @@ int		main(void)
 	start = lm_search_s_e(&room, 1);
 	end = lm_search_s_e(&room, 2);
 	lm_bfs(&tunnel, &visited, &to_visit, start);
+	lm_find_road(
+
 
 	free(start);
 	free(end);
