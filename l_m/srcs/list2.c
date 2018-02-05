@@ -6,39 +6,62 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 17:37:46 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/24 15:19:47 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/05 14:32:38 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	lm_room_free(t_room *room)
+void	lm_room_free(t_room **begin_list)
 {
 	t_room *tmp;
+	t_room *del;
 
-	if (room)
-		while (room)
+	del = *begin_list;
+	if (del)
+		while (del)
 		{
-			tmp = room->next;
-			free(room->name);
-			free(room);
-			room = tmp;
+			tmp = del->next;
+			free(del->name);
+			free(del);
+			del = tmp;
 		}
+	*begin_list = NULL;
 }
 
-void	lm_tunnel_free(t_tunnel *tunnel)
+void	lm_visit_free(t_visit **begin_list)
+{
+	t_visit	*tmp;
+	t_visit *del;
+
+	del = *begin_list;
+	if (del)
+		while (del)
+		{
+			tmp = del->next;
+			free(del->name);
+			free(del);
+			del = tmp;
+		}
+	*begin_list = NULL;
+}
+
+void	lm_tunnel_free(t_tunnel **begin_list)
 {
 	t_tunnel *tmp;
+	t_tunnel *del;
 
-	if (tunnel)
-		while (tunnel)
+	del = *begin_list;
+	if (del)
+		while (del)
 		{
-			tmp = tunnel->next;
-			free(tunnel->name1);
-			free(tunnel->name2);
-			free(tunnel);
-			tunnel = tmp;
+			tmp = del->next;
+			free(del->name1);
+			free(del->name2);
+			free(del);
+			del = tmp;
 		}
+	*begin_list = NULL;
 }
 
 void	lm_free_tab(char **tab)

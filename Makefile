@@ -6,7 +6,7 @@
 #    By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/19 14:34:26 by pnardozi          #+#    #+#              #
-#    Updated: 2018/02/02 15:50:29 by pnardozi         ###   ########.fr        #
+#    Updated: 2018/02/05 15:30:17 by pnardozi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ LEM_IN_INCLUDES_PATH = ./l_m/includes/
 LEM_IN_OBJ_PATH = ./l_m/obj/
 
 LEM_IN_SRCS_NAME =	lem_in.c \
+					bfs.c \
+					road.c \
 		   			list.c \
 		   			list2.c \
 					list3.c \

@@ -6,13 +6,37 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:31:48 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/04 18:17:27 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/05 18:23:45 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-char			*lm_search_s_e(t_room **begin_list, int s_e)
+void				print_lstvisit(t_visit **begin_list)
+{
+	t_visit *lst;
+
+	lst = *begin_list;
+	while (lst)
+	{
+		ft_printf("name = %s\n", lst->name);
+		lst = lst->next;
+	}
+}
+
+void				print_grey(t_room **begin_list)
+{
+	t_room *lst;
+
+	lst =*begin_list;
+	while (lst)
+	{
+		ft_printf("name = %s, grey = %d\n", lst->name, lst->grey);
+		lst = lst->next;
+	}
+}
+
+static char			*lm_search_s_e(t_room **begin_list, int s_e)
 {
 	t_room		*lst;
 	char		*tmp;
@@ -29,141 +53,73 @@ char			*lm_search_s_e(t_room **begin_list, int s_e)
 	return (tmp);
 }
 
-int			lm_get_children(t_tunnel **lst_tunnel, t_visit **lst_tovisit, char *name)
+static void	lm_reset_visit(t_room **begin_list)
 {
-	t_tunnel	*tunnel;
-	int			ret;
+	t_room *lst;
 
-	ret = 0;
-	tunnel = *lst_tunnel;
-	while (tunnel)
-	{
-		if (ft_strcmp(name, tunnel->name1) == 0 && tunnel->room2->visit == 0 && tunnel->room2->grey == 0)
-		{
-			lm_pushback_tovisit(lst_tovisit, tunnel->name2);
-			if (tunnel->room2->start_end == 2)
-				return (0);
-			ret = 1;
-		}
-		else if (ft_strcmp(name, tunnel->name2) == 0 && tunnel->room1->visit == 0 && tunnel->room1->grey == 0)
-		{
-			lm_pushback_tovisit(lst_tovisit, tunnel->name1);
-			if (tunnel->room1->start_end == 2)
-				return (0);
-			ret = 1;
-		}
-		tunnel = tunnel->next;
-	}
-	return (ret);
-}
-
-char		*lm_name_tovisit(t_visit **begin_list, int nb)
-{
-	t_visit		*lst;
-	int			i;
-	char		*tmp;
-
-	i = 0;
-	tmp = NULL;
 	lst = *begin_list;
-	while (lst && i != nb)
-	{
-		lst = lst->next;
-		i++;
-	}
 	if (lst)
-		tmp = ft_strdup(lst->name);
-	return (tmp);
+		while (lst)
+		{
+			lst->visit = 0;
+			lst = lst->next;
+		}
 }
 
-int			lm_visit(t_tunnel **lst_tunnel, t_visit **lst_visited, t_visit **lst_tovisit, char *name)
+static int		lm_algo(t_tunnel **lst_tunnel, t_visit **lst_road, t_room **lst_room)
 {
-	t_tunnel	*tunnel;
-
-	tunnel = *lst_tunnel;
-	while (tunnel)
-	{	
-		if (ft_strcmp(name, tunnel->name1) == 0)
-		{
-			tunnel->room1->visit = 1;
-			lm_pushback_tovisit(lst_visited, name);
-			return (lm_get_children(lst_tunnel, lst_tovisit, name));
-		}
-		if (ft_strcmp(name, tunnel->name2) == 0)
-		{
-			tunnel->room2->visit = 1;
-			lm_pushback_tovisit(lst_visited, name);
-			return (lm_get_children(lst_tunnel, lst_tovisit, name));
-		}
-		tunnel = tunnel->next;
-	}
-	return (0);
-}
-
-int			lm_bfs(t_tunnel **lst_tunnel, t_visit **lst_visited, t_visit **lst_tovisit, char *start)
-{
-	char	*name;
-	int		i;
-
-	i = 0;
-	//cherche start, on la visite et on met ses fils dans la liste des a visiter
-	lm_visit(lst_tunnel,lst_visited, lst_tovisit, start);
-	name = lm_name_tovisit(lst_tovisit, i);
-	while (lm_visit(lst_tunnel, lst_visited, lst_tovisit, name))
-	{
-		i++;
-		name = lm_name_tovisit(lst_tovisit, i);
-	}
-
-	
-	//
-	t_tunnel	*tunnel;
-	t_visit		*visit;
+	int			ret;
+	t_visit		*visited;
 	t_visit		*to_visit;
-	tunnel = *lst_tunnel;
-	visit = *lst_visited;
-	to_visit = *lst_tovisit;
-	while (visit)
+	t_tunnel	*check_tunnel;
+
+	visited = NULL;
+	to_visit = NULL;
+	check_tunnel = *lst_tunnel;
+	while (check_tunnel)
 	{
-		ft_printf("visiter = %s\n", visit->name);
-		visit = visit->next;
+		if (check_tunnel->room1->start_end == 1 && check_tunnel->room2->start_end == 2)
+		{
+			lm_pushfront_tovisit(lst_road, check_tunnel->name2);
+			lm_pushfront_tovisit(lst_road, check_tunnel->name1);
+			return (1);
+		}
+		else if (check_tunnel->room1->start_end == 2 && check_tunnel->room1->start_end == 1)
+		{
+			lm_pushfront_tovisit(lst_road, check_tunnel->name1);
+			lm_pushfront_tovisit(lst_road, check_tunnel->name2);
+			return (1);
+		}
+		check_tunnel = check_tunnel->next;
 	}
-	while (to_visit)
+	ret = lm_bfs(lst_tunnel, &visited, &to_visit, lm_search_s_e(lst_room, 1));
+	while (ret == 2)
 	{
-		ft_printf("a visiter = %s\n", to_visit->name);
-		to_visit = to_visit->next;
+		lm_visit_free(&to_visit);
+		lm_find_road(lst_road, &visited, lst_tunnel, lm_search_s_e(lst_room, 2));
+		lm_visit_free(&visited);
+		lm_reset_visit(lst_room);
+		ret = lm_bfs(lst_tunnel, &visited, &to_visit, lm_search_s_e(lst_room, 1));
 	}
 	return (0);
 }
-
-int		lm_find_road(t_visit **lst_road, t_visit **lst_visited, t_tunnel **lst_tunnel, char *end)
-{
-
 
 int		main(void)
 {
 	t_tunnel	*tunnel;
 	t_room		*room;
-	char		*start;
-	char		*end;
-	t_visit		*visited;
-	t_visit		*to_visit;
 	t_visit		*road;
 
-	end = NULL;
-	start = NULL;
 	tunnel = NULL;
 	room = NULL;
+	road = NULL;
 	lm_parse(&tunnel, &room);
-	start = lm_search_s_e(&room, 1);
-	end = lm_search_s_e(&room, 2);
-	lm_bfs(&tunnel, &visited, &to_visit, start);
-	lm_find_road(
+	lm_algo(&tunnel, &road, &room);
+
+	print_lstvisit(&road);
 
 
-	free(start);
-	free(end);
-	lm_room_free(room);
-	lm_tunnel_free(tunnel);
+	lm_room_free(&room);
+	lm_tunnel_free(&tunnel);
 	return (0);
 }

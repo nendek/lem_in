@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:50:58 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/03 18:16:47 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/05 15:29:50 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,20 @@ typedef struct			s_tunnel
 	struct s_tunnel		*next;
 }						t_tunnel;
 
-void					lm_room_free(t_room *room);
-void					lm_tunnel_free(t_tunnel *tunnel);
+void					lm_room_free(t_room **begin_list);
+void					lm_tunnel_free(t_tunnel **begin_list);
 void					lm_free_tab(char **tab);
+void					lm_visit_free(t_visit **begin_list);
 
 t_visit					*lm_tovisit_lstnew(char *name);
 int						lm_pushback_tovisit(t_visit **begin_list, char *name);
+int						lm_pushfront_tovisit(t_visit **begin_list, char *name);
 t_room					*lm_room_lstnew(void);
 t_room					*lm_pushback_room(t_room **begin_list);
 t_tunnel				*lm_tunnel_lstnew(void);
 t_tunnel				*lm_pushback_tunnel(t_tunnel **begin_list);
+int						lm_find_road(t_visit **lst_road, t_visit **lst_visited, t_tunnel **lst_tunnel, char *end);
+int						lm_bfs(t_tunnel **lst_tunnel, t_visit **lst_visited, t_visit **lst_tovisit, char *start);
 
 int						lm_check_name_double(t_room **begin_list, char *name, int p_x, int p_y);
 int						lm_check_name(t_room **begin_list, char *name, t_room **tunnel);
