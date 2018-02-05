@@ -97,7 +97,7 @@ int			lm_bfs(t_tunnel **lst_tunnel, t_visit **lst_visited, t_visit **lst_tovisit
 	name = lm_name_tovisit(lst_tovisit, i);
 	if (!name)
 		return (0);
-	while (ret == 1)
+	while (ret != 2)
 	{
 		ret = lm_visit(lst_tunnel, lst_visited, lst_tovisit, name);
 		i++;

@@ -97,6 +97,7 @@ static int		lm_algo(t_tunnel **lst_tunnel, t_visit **lst_road, t_room **lst_room
 	{
 		lm_visit_free(&to_visit);
 		lm_find_road(lst_road, &visited, lst_tunnel, lm_search_s_e(lst_room, 2));
+		print_lstvisit(lst_road);
 		lm_visit_free(&visited);
 		lm_reset_visit(lst_room);
 		ret = lm_bfs(lst_tunnel, &visited, &to_visit, lm_search_s_e(lst_room, 1));
@@ -116,7 +117,6 @@ int		main(void)
 	lm_parse(&tunnel, &room);
 	lm_algo(&tunnel, &road, &room);
 
-	print_lstvisit(&road);
 
 
 	lm_room_free(&room);
