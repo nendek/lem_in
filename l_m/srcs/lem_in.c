@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:31:48 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/05 18:23:45 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/06 17:25:34 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void				print_grey(t_room **begin_list)
 	}
 }
 
-static char			*lm_search_s_e(t_room **begin_list, int s_e)
+char			*lm_search_s_e(t_room **begin_list, int s_e)
 {
 	t_room		*lst;
 	char		*tmp;
@@ -97,11 +97,11 @@ static int		lm_algo(t_tunnel **lst_tunnel, t_visit **lst_road, t_room **lst_room
 	{
 		lm_visit_free(&to_visit);
 		lm_find_road(lst_road, &visited, lst_tunnel, lm_search_s_e(lst_room, 2));
-		print_lstvisit(lst_road);
 		lm_visit_free(&visited);
 		lm_reset_visit(lst_room);
 		ret = lm_bfs(lst_tunnel, &visited, &to_visit, lm_search_s_e(lst_room, 1));
 	}
+	print_lstvisit(lst_road);
 	return (0);
 }
 
@@ -110,12 +110,14 @@ int		main(void)
 	t_tunnel	*tunnel;
 	t_room		*room;
 	t_visit		*road;
+	int			ants;
 
 	tunnel = NULL;
 	room = NULL;
 	road = NULL;
-	lm_parse(&tunnel, &room);
+	lm_parse(&tunnel, &room, &ants);
 	lm_algo(&tunnel, &road, &room);
+	lm_push_ants(ants, &road, &room);
 
 
 

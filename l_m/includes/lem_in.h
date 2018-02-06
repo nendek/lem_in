@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:50:58 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/05 15:29:50 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/06 14:51:15 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,14 @@ t_tunnel				*lm_pushback_tunnel(t_tunnel **begin_list);
 int						lm_find_road(t_visit **lst_road, t_visit **lst_visited, t_tunnel **lst_tunnel, char *end);
 int						lm_bfs(t_tunnel **lst_tunnel, t_visit **lst_visited, t_visit **lst_tovisit, char *start);
 
+int						lm_push_ants(int nb_ants, t_visit **lst_road, t_room **lst_room);
+char					*lm_search_s_e(t_room **begin_list, int s_e);
+
 int						lm_check_name_double(t_room **begin_list, char *name, int p_x, int p_y);
 int						lm_check_name(t_room **begin_list, char *name, t_room **tunnel);
 int						lm_get_ants(int *ants, char *line);
 int						lm_get_room(t_room **begin_list, int s_e, int nb_ants, char *line);
-int						lm_parse(t_tunnel **tunnel, t_room **room);
+int						lm_parse(t_tunnel **tunnel, t_room **room, int *ants);
 int						lm_check_int(long long nb, char *tmp);
 int						lm_check_tunnel_double(t_tunnel **begin_list, char *name1, char *name2);
 int						lm_get_tunnel(t_tunnel **tunnel, t_room **room, char *line);

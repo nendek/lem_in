@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 15:07:07 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/05 18:15:18 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/06 12:54:06 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ static int			lm_visit(t_tunnel **lst_tunnel, t_visit **lst_visited, t_visit **ls
 	if (tunnel)
 		while (tunnel)
 		{
-			if (ft_strcmp(name, tunnel->name1) == 0 && tunnel->room1->grey == 0)
+			if (ft_strcmp(name, tunnel->name1) == 0 && tunnel->room1->grey == 0 && tunnel->room1->visit == 0)
 			{
 				tunnel->room1->visit = 1;
 				lm_pushback_tovisit(lst_visited, name);
 				return (lm_get_children(lst_tunnel, lst_tovisit, name));
 			}
-			if (ft_strcmp(name, tunnel->name2) == 0 && tunnel->room2->grey == 0)
+			if (ft_strcmp(name, tunnel->name2) == 0 && tunnel->room2->grey == 0 && tunnel->room2->visit == 0)
 			{
 				tunnel->room2->visit = 1;
 				lm_pushback_tovisit(lst_visited, name);
@@ -106,7 +106,7 @@ int			lm_bfs(t_tunnel **lst_tunnel, t_visit **lst_visited, t_visit **lst_tovisit
 		if (!name)
 			return (0);
 	}
-	
+/*	
 	t_tunnel	*tunnel;
 	t_visit		*visit;
 	t_visit		*to_visit;
@@ -123,6 +123,6 @@ int			lm_bfs(t_tunnel **lst_tunnel, t_visit **lst_visited, t_visit **lst_tovisit
 		ft_printf("a visiter = %s\n", to_visit->name);
 		to_visit = to_visit->next;
 	}
-
+*/
 	return (ret);
 }

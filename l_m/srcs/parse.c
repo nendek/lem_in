@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:50:31 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/24 17:00:51 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/06 13:08:24 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ static int		lm_parse2(t_tunnel **tunnel, t_room **room,\
 	return (1);
 }
 
-int				lm_parse(t_tunnel **tunnel, t_room **room)
+int				lm_parse(t_tunnel **tunnel, t_room **room, int *ants)
 {
 	char		*line;
 	t_index		index;
@@ -141,5 +141,6 @@ int				lm_parse(t_tunnel **tunnel, t_room **room)
 			return (0);
 		free(line);
 	}
+	*ants = index.ants;
 	return (1);
 }
