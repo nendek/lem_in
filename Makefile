@@ -6,7 +6,7 @@
 #    By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/19 14:34:26 by pnardozi          #+#    #+#              #
-#    Updated: 2018/02/06 14:51:42 by pnardozi         ###   ########.fr        #
+#    Updated: 2018/02/07 17:33:02 by pnardozi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ LEM_IN_SRCS_NAME =	lem_in.c \
 		   			list2.c \
 					list3.c \
 					push_ants.c \
+					display.c \
 					parse.c \
 					parse_get_room.c \
 					parse_get_tunnel.c \

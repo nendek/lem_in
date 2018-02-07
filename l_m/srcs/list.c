@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 17:38:17 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/05 12:58:29 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/07 14:58:23 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_visit	*lm_tovisit_lstnew(char *name)
 	if (new != NULL)
 	{
 		new->name = ft_strdup(name);
+		new->name_ant = 0;
 		new->next = NULL;
 	}
 	return (new);

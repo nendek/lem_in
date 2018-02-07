@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:50:58 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/06 14:51:15 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/07 17:33:25 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ typedef struct			s_room
 typedef struct			s_visit
 {
 	char				*name;
-	struct s_visit	*next;
+	int					name_ant;
+	struct s_visit		*next;
 }						t_visit;
 
 typedef struct			s_tunnel
@@ -76,6 +77,7 @@ int						lm_bfs(t_tunnel **lst_tunnel, t_visit **lst_visited, t_visit **lst_tovi
 int						lm_push_ants(int nb_ants, t_visit **lst_road, t_room **lst_room);
 char					*lm_search_s_e(t_room **begin_list, int s_e);
 
+int						lm_display(t_visit **lst_road, t_room **lst_room, int nb_ants);
 int						lm_check_name_double(t_room **begin_list, char *name, int p_x, int p_y);
 int						lm_check_name(t_room **begin_list, char *name, t_room **tunnel);
 int						lm_get_ants(int *ants, char *line);
