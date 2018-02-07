@@ -52,16 +52,16 @@ int		lm_move_ants(t_visit **lst_road, t_room *end_room, int i, t_room **lst_room
 
 	road2 = *lst_road;
 	start = lm_search_s_e(lst_room, 1);
-	tmp = 0;
-	while (i != 0)
+	while (i != 1)
 	{
-		dprintf(1, "i = %d\n", i);
-		while (tmp < i - 2 && road2)
+		tmp = 1;
+		while (tmp < i - 1 && road2)
 		{
 			road2 = road2->next;
 			tmp++;
 		}
 		road1 = road2->next;
+		//dprintf(1, "road1 = %s, road2 = %s\n", road1->name, road2->name);
 		if (ft_strcmp(road1->name, end_room->name) == 0)
 		{
 			if (road2->name_ant != 0)
@@ -71,7 +71,7 @@ int		lm_move_ants(t_visit **lst_road, t_room *end_room, int i, t_room **lst_room
 				end_room->ants++;
 			}
 		}
-		else if (ft_strcmp(road2->name, start) == 0)
+		else if (ft_strcmp(road2->name, start) == 0 && road2->name_ant >= 1)
 		{
 			if (road1->name_ant == 0 && road2->name != 0)
 			{
@@ -86,8 +86,10 @@ int		lm_move_ants(t_visit **lst_road, t_room *end_room, int i, t_room **lst_room
 			road1->name_ant = road2->name_ant;
 			road2->name_ant = 0;
 		}
+		road2 = *lst_road;
 		i--;
 	}
+	ft_printf("\n");
 	return (1);
 }
 
@@ -101,7 +103,7 @@ int		lm_display(t_visit **lst_road, t_room **lst_room, int nb_ants)
 
 	i = lm_count_lst(lst_road);
 	lm_get_end(lst_room, &(room_end));
-//	while (room_end->ants != nb_ants)
+	while (room_end->ants != nb_ants)
 		lm_move_ants(lst_road, room_end, i, lst_room);
 
 	return (1);
