@@ -102,9 +102,6 @@ int		lm_display(t_visit **lst_road, t_room **lst_room, int nb_ants)
 	tmp = nb_ants;
 	i = lm_count_lst(lst_road);
 	lm_get_end(lst_room, &(room_end));
-
-	t_visit *lst_tmp;
-	lst_tmp = *lst_road;
 	while (room_end->ants != nb_ants)
 		lm_move_ants(lst_road, room_end, i, lst_room, &tmp);
 

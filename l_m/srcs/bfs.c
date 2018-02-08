@@ -106,23 +106,5 @@ int			lm_bfs(t_tunnel **lst_tunnel, t_visit **lst_visited, t_visit **lst_tovisit
 		if (!name)
 			return (0);
 	}
-/*	
-	t_tunnel	*tunnel;
-	t_visit		*visit;
-	t_visit		*to_visit;
-	tunnel = *lst_tunnel;
-	visit = *lst_visited;
-	to_visit = *lst_tovisit;
-	while (visit)
-	{
-		ft_printf("visiter = %s\n", visit->name);
-		visit = visit->next;
-	}
-	while (to_visit)
-	{
-		ft_printf("a visiter = %s\n", to_visit->name);
-		to_visit = to_visit->next;
-	}
-*/
 	return (ret);
 }

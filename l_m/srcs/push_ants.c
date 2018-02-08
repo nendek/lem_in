@@ -168,6 +168,5 @@ int		lm_push_ants(int nb_ants, t_visit **lst_road, t_room **lst_room)
 	if (!(lm_distrib_ants(nb_ants, nb_road, length_road, n_ants)))
 		return (0);
 	lm_affect_ants(n_ants, lst_room, lst_road);
-	lm_display(lst_road, lst_room, nb_ants);
-	return (1);
+	lm_display(lst_road, lst_room, nb_ants); return (1);
 }

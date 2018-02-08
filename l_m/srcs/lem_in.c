@@ -12,30 +12,6 @@
 
 #include "lem_in.h"
 
-void				print_lstvisit(t_visit **begin_list)
-{
-	t_visit *lst;
-
-	lst = *begin_list;
-	while (lst)
-	{
-		ft_printf("name = %s\n", lst->name);
-		lst = lst->next;
-	}
-}
-
-void				print_grey(t_room **begin_list)
-{
-	t_room *lst;
-
-	lst =*begin_list;
-	while (lst)
-	{
-		ft_printf("name = %s, grey = %d\n", lst->name, lst->grey);
-		lst = lst->next;
-	}
-}
-
 char			*lm_search_s_e(t_room **begin_list, int s_e)
 {
 	t_room		*lst;
@@ -78,6 +54,7 @@ static int		lm_algo(t_tunnel **lst_tunnel, t_visit **lst_road, t_room **lst_room
 	check_tunnel = *lst_tunnel;
 	while (check_tunnel)
 	{
+		// ICI affichage que chemain start-end hop hop
 		if (check_tunnel->room1->start_end == 1 && check_tunnel->room2->start_end == 2)
 		{
 			lm_pushfront_tovisit(lst_road, check_tunnel->name2);
