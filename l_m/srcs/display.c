@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 11:27:44 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/08 12:04:26 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/11 15:16:19 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ int		lm_move_ants(t_visit **lst_road, t_room *end_room, int i, t_room **lst_room
 	t_visit		*road1;
 	t_visit		*road2;
 	int			tmp;
+	int			space;
 
 	road2 = *lst_road;
 	start = lm_search_s_e(lst_room, 1);
+	space = 0;
 	while (i != 1)
 	{
 		tmp = 1;
@@ -65,7 +67,11 @@ int		lm_move_ants(t_visit **lst_road, t_room *end_room, int i, t_room **lst_room
 		{
 			if (road2->name_ant != 0)
 			{
-				ft_printf("L%d-%s ", road2->name_ant, end_room->name);
+				if (space == 0)
+					ft_printf("L%d-%s", road2->name_ant, end_room->name);
+				else
+					ft_printf(" L%d-%s", road2->name_ant, end_room->name);
+				space = 1;
 				road2->name_ant = 0;
 				end_room->ants++;
 			}
@@ -74,7 +80,11 @@ int		lm_move_ants(t_visit **lst_road, t_room *end_room, int i, t_room **lst_room
 		{
 			if (road1->name_ant == 0 && road2->name != 0)
 			{
-				ft_printf("L%d-%s ", *nb_ants, road1->name);
+				if (space == 0)
+					ft_printf("L%d-%s", *nb_ants, road1->name);
+				else
+					ft_printf(" L%d-%s", *nb_ants, road1->name);
+				space = 1;
 				road1->name_ant = *nb_ants;
 				road2->name_ant--;
 				*nb_ants -= 1;
@@ -82,7 +92,11 @@ int		lm_move_ants(t_visit **lst_road, t_room *end_room, int i, t_room **lst_room
 		}
 		else if (road1->name_ant == 0 && road2->name_ant != 0)
 		{
-			ft_printf("L%d-%s ", road2->name_ant, road1->name);
+			if (space == 0)
+				ft_printf("L%d-%s", road2->name_ant, road1->name);
+			else
+				ft_printf(" L%d-%s", road2->name_ant, road1->name);
+			space = 1;
 			road1->name_ant = road2->name_ant;
 			road2->name_ant = 0;
 		}
@@ -90,7 +104,8 @@ int		lm_move_ants(t_visit **lst_road, t_room *end_room, int i, t_room **lst_room
 		i--;
 	}
 	ft_printf("\n");
-	return (1);
+	free(start);
+	return (0);
 }
 
 int		lm_display(t_visit **lst_road, t_room **lst_room, int nb_ants)
@@ -104,6 +119,5 @@ int		lm_display(t_visit **lst_road, t_room **lst_room, int nb_ants)
 	lm_get_end(lst_room, &(room_end));
 	while (room_end->ants != nb_ants)
 		lm_move_ants(lst_road, room_end, i, lst_room, &tmp);
-
 	return (1);
 }

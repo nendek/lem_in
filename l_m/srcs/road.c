@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 15:11:31 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/06 17:43:22 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/11 20:58:47 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int		lm_find_road(t_visit **lst_road, t_visit **lst_visited, t_tunnel **lst_tunn
 			if (tunnel->room2->start_end == 1)
 			{
 				lm_pushfront_tovisit(lst_road, tunnel->name2);
+				free(tmp);
+				free(end);
 				return (1);
 			}
 			tunnel = *lst_tunnel;
@@ -64,6 +66,8 @@ int		lm_find_road(t_visit **lst_road, t_visit **lst_visited, t_tunnel **lst_tunn
 			tunnel->room2->grey = 1;
 			if (tunnel->room1->start_end == 1)
 			{
+				free(tmp);
+				free(end);
 				lm_pushfront_tovisit(lst_road, tunnel->name1);
 				return (1);
 			}
@@ -72,5 +76,7 @@ int		lm_find_road(t_visit **lst_road, t_visit **lst_visited, t_tunnel **lst_tunn
 		else
 			tunnel = tunnel->next;
 	}
+	free(tmp);
+	free(end);
 	return (0);
 }

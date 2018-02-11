@@ -6,21 +6,17 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:50:31 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/06 13:08:24 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/11 19:10:27 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-//maps vide
-//pas de tunnel (check si start et end son connecter)
 
 static int		lm_parse_tunnel(t_room **room, t_tunnel **tunnel,\
 					int start_end, char *line)
 {
 	if (start_end != 0)
 	{
-		ft_printf("Erreur: room attendu\n");
 		free(line);
 		return (0);
 	}
@@ -42,8 +38,6 @@ static int		lm_parse_room(t_room **room, t_index *index, char *line)
 	if (!(lm_get_room(room, index->start_end, index->ants, line))\
 					|| index->sec_part != 0)
 	{
-		if (index->sec_part != 0)
-			ft_printf("Erreur: room au mauvais endroit\n");
 		free(line);
 		return (0);
 	}
@@ -55,16 +49,10 @@ static int		lm_parse_room(t_room **room, t_index *index, char *line)
 static int		lm_parse_se2(t_room **room, int *start_end)
 {
 	if (*start_end != 0)
-	{
-		ft_printf("Erreur: room attendu\n");
 		return (0);
-	}
 	*start_end = ROOM_END;
 	if (lm_check_e(room))
-	{
-		ft_printf("Erreur: end deja existant\n");
 		return (0);
-	}
 	return (1);
 }
 
@@ -74,14 +62,12 @@ static int		lm_parse_se(char *line, t_room **room, int *start_end)
 	{
 		if (*start_end != 0)
 		{
-			ft_printf("Erreur: room attendu\n");
 			free(line);
 			return (0);
 		}
 		*start_end = ROOM_START;
 		if (lm_check_s(room))
 		{
-			ft_printf("Erreur: start deja existant\n");
 			free(line);
 			return (0);
 		}
@@ -116,7 +102,6 @@ static int		lm_parse2(t_tunnel **tunnel, t_room **room,\
 	}
 	else
 	{
-		ft_printf("Erreur format\n");
 		free(line);
 		return (0);
 	}
@@ -128,9 +113,14 @@ int				lm_parse(t_tunnel **tunnel, t_room **room, int *ants)
 	char		*line;
 	t_index		index;
 
+	line = NULL;
 	index.sec_part = 0;
 	index.start_end = 0;
-	get_next_line_one_file(0, &line);
+	if (get_next_line_one_file(0, &line) == -1)
+	{
+		free(line);
+		return (0);
+	}
 	if (!(lm_get_ants(&index.ants, line)))
 		return (0);
 	free(line);

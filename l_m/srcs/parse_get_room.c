@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:49:05 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/07 14:35:11 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/11 17:43:49 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static int		lm_get_pos2(char *line, int *i, int *j, char *tmp)
 		{
 			if (tmp)
 				free(tmp);
-			ft_printf("Erreur coordonne de room\n");
 			return (0);
 		}
 		*i += 1;
@@ -88,6 +87,5 @@ int				lm_get_room(t_room **begin_list, int s_e, int nb_ants,\
 	if (!(lm_check_name_double(begin_list, room->name,\
 					room->pos.x, room->pos.y)))
 		return (0);
-	//ft_printf("name = %s, start_end = %d, ants = %d, pos.x = %d, pos.y = %d\n", room->name, room->start_end, room->ants, room->pos.x, room->pos.y);
 	return (1);
 }

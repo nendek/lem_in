@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 12:54:31 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/08 12:04:27 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/11 20:41:20 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int		lm_count_road(t_visit **begin_list, char *start)
 				i++;
 			lst = lst->next;
 		}
+	free(start);
 	return (i);
 }
 
@@ -116,7 +117,7 @@ void	lm_equalize_ants2(int *n_ants, int nb_road)
 	}
 }
 
-int		lm_distrib_ants(int nb_ants, int nb_road, int *length_road, int *n_ants)
+void	lm_distrib_ants(int nb_ants, int nb_road, int *length_road, int *n_ants)
 {
 	int		i;
 	int		sum;
@@ -130,7 +131,6 @@ int		lm_distrib_ants(int nb_ants, int nb_road, int *length_road, int *n_ants)
 	}
 	lm_equalize_ants(n_ants, nb_ants, nb_road);
 	lm_equalize_ants2(n_ants, nb_road);
-	return (1);
 }
 
 void	lm_affect_ants(int *n_ants, t_room **lst_room, t_visit **lst_road)
@@ -151,6 +151,7 @@ void	lm_affect_ants(int *n_ants, t_room **lst_room, t_visit **lst_road)
 		}
 		road = road->next;
 	}
+	free(start);
 }
 
 int		lm_push_ants(int nb_ants, t_visit **lst_road, t_room **lst_room)
@@ -165,8 +166,10 @@ int		lm_push_ants(int nb_ants, t_visit **lst_road, t_room **lst_room)
 	if (!(length_road = malloc(sizeof(int) * nb_road)))
 		return (0);
 	lm_get_length_road(length_road, lst_road, lst_room);
-	if (!(lm_distrib_ants(nb_ants, nb_road, length_road, n_ants)))
-		return (0);
+	lm_distrib_ants(nb_ants, nb_road, length_road, n_ants);
 	lm_affect_ants(n_ants, lst_room, lst_road);
-	lm_display(lst_road, lst_room, nb_ants); return (1);
+	lm_display(lst_road, lst_room, nb_ants);
+	free(n_ants);
+	free(length_road);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 15:07:07 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/06 12:54:06 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/11 21:21:56 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,9 @@ int			lm_bfs(t_tunnel **lst_tunnel, t_visit **lst_visited, t_visit **lst_tovisit
 	int		ret;
 
 	i = 0;
+	name = NULL;
 	ret = lm_visit(lst_tunnel,lst_visited, lst_tovisit, start);
+	free(start);
 	name = lm_name_tovisit(lst_tovisit, i);
 	if (!name)
 		return (0);
@@ -101,10 +103,12 @@ int			lm_bfs(t_tunnel **lst_tunnel, t_visit **lst_visited, t_visit **lst_tovisit
 	{
 		ret = lm_visit(lst_tunnel, lst_visited, lst_tovisit, name);
 		i++;
-		free(name);
+		ft_strdel(&name);
+		name = NULL;
 		name = lm_name_tovisit(lst_tovisit, i);
 		if (!name)
 			return (0);
 	}
+	free(name);
 	return (ret);
 }

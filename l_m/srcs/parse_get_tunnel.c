@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:39:49 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/07 11:14:09 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/11 17:44:01 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 static int		check_name(char *name1, char *name2)
 {
 	if ((ft_strcmp(name1, name2)) == 0)
-	{
-		ft_printf("Erreur : nom identique");
 		return (0);
-	}
 	return (1);
 }
 
