@@ -6,32 +6,11 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:50:31 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/11 19:10:27 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/12 10:36:28 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-static int		lm_parse_tunnel(t_room **room, t_tunnel **tunnel,\
-					int start_end, char *line)
-{
-	if (start_end != 0)
-	{
-		free(line);
-		return (0);
-	}
-	if ((lm_check_s_e(room)) != 2)
-	{
-		free(line);
-		return (0);
-	}
-	if (!(lm_get_tunnel(tunnel, room, line)))
-	{
-		free(line);
-		return (0);
-	}
-	return (1);
-}
 
 static int		lm_parse_room(t_room **room, t_index *index, char *line)
 {

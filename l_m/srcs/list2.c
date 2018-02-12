@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 17:37:46 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/07 11:14:07 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/12 10:34:13 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,38 +86,10 @@ int		lm_check_name_double(t_room **begin_list, char *name, int p_x, int p_y)
 		while (lst->next)
 		{
 			if (lst->pos.x == p_x && lst->pos.y == p_y)
-			{
-				ft_printf("Erreur: coordonne en double\n");
 				return (0);
-			}
 			if ((ft_strcmp(lst->name, name)) == 0)
-			{
-				ft_printf("Erreur nom en double\n");
 				return (0);
-			}
 			lst = lst->next;
 		}
 	return (1);
-}
-
-int		lm_check_name(t_room **begin_list, char *name, t_room **tunnel)
-{
-	t_room	*lst;
-	int		ok;
-
-	ok = 0;
-	lst = *begin_list;
-	if (lst)
-		while (lst)
-		{
-			if ((ft_strcmp(lst->name, name)) == 0)
-			{
-				*tunnel = lst;
-				ok++;
-			}
-			lst = lst->next;
-		}
-	if (ok == 0)
-		ft_printf("Erreur le nom de room n'existe pas\n'");
-	return (ok);
 }

@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 17:32:35 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/23 16:21:56 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/12 11:22:16 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,39 @@ int		lm_check_int(long long nb, char *tmp)
 		return (0);
 	}
 	return (1);
+}
+
+char	*lm_search_s_e(t_room **begin_list, int s_e)
+{
+	t_room		*lst;
+	char		*tmp;
+
+	tmp = NULL;
+	lst = *begin_list;
+	if (lst)
+		while (lst)
+		{
+			if (lst->start_end == s_e)
+				break ;
+			lst = lst->next;
+		}
+	if (lst)
+		tmp = ft_strdup(lst->name);
+	return (tmp);
+}
+
+void	lm_print_se(t_room **begin_list, int nb_ants)
+{
+	t_room	*lst;
+	int		i;
+
+	i = 0;
+	lst = *begin_list;
+	if (lst->start_end != 2)
+		lst = lst->next;
+	while (i != nb_ants + 1)
+	{
+		ft_printf("L%d-%s\n", i, lst->name);
+		i++;
+	}
 }

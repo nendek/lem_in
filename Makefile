@@ -6,7 +6,7 @@
 #    By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/19 14:34:26 by pnardozi          #+#    #+#              #
-#    Updated: 2018/02/11 17:51:38 by pnardozi         ###   ########.fr        #
+#    Updated: 2018/02/12 12:11:07 by pnardozi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,14 +26,18 @@ LEM_IN_INCLUDES_PATH = ./l_m/includes/
 LEM_IN_OBJ_PATH = ./l_m/obj/
 
 LEM_IN_SRCS_NAME =	lem_in.c \
+					algo.c \
 					bfs.c \
 					road.c \
 		   			list.c \
 		   			list2.c \
 					list3.c \
+					list4.c \
 					push_ants.c \
+					push_ants2.c \
 					display.c \
 					parse.c \
+					parse2.c \
 					parse_get_room.c \
 					parse_get_tunnel.c \
 					parse_get_ants.c \

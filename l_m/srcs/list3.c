@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 12:39:02 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/11 15:31:51 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/12 10:26:58 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,7 @@ int		lm_check_s_e(t_room **begin_list)
 	j = 0;
 	if (lm_check_s(begin_list))
 		i = 1;
-	else
-		ft_printf("Erreur: pas de start\n");
 	if (lm_check_e(begin_list))
 		j = 1;
-	else
-		ft_printf("Erreur: pas de end\n");
 	return (i + j);
 }

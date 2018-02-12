@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:50:58 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/07 17:33:25 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/12 12:14:41 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct			s_tunnel
 	struct s_tunnel		*next;
 }						t_tunnel;
 
+int						lm_parse_tunnel(t_room **room, t_tunnel **tunnel, int start_end, char *line);
+
 void					lm_room_free(t_room **begin_list);
 void					lm_tunnel_free(t_tunnel **begin_list);
 void					lm_free_tab(char **tab);
@@ -89,5 +91,15 @@ int						lm_get_tunnel(t_tunnel **tunnel, t_room **room, char *line);
 int						lm_check_s(t_room **begin_list);
 int						lm_check_e(t_room **begin_list);
 int						lm_check_s_e(t_room **begin_list);
+int						lm_algo(t_tunnel **lst_tunnel, t_visit **lst_road, t_room **lst_room);
+
+int						lm_count_road(t_visit **begin_list, char *start);
+void					lm_get_length_road(int *length_road, t_visit **lst_road, t_room **lst_room);
+int						lm_sumlength_road(int *length_road, int nb_road);
+void					lm_print_se(t_room **begin_list, int nb_ants);
+
+
+
+
 
 #endif

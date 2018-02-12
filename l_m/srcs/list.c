@@ -6,57 +6,11 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 17:38:17 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/07 14:58:23 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/12 10:27:58 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-t_visit	*lm_tovisit_lstnew(char *name)
-{
-	t_visit *new;
-
-	if (!(new = malloc(sizeof(t_visit))))
-		return (NULL);
-	if (new != NULL)
-	{
-		new->name = ft_strdup(name);
-		new->name_ant = 0;
-		new->next = NULL;
-	}
-	return (new);
-}
-
-int		lm_pushfront_tovisit(t_visit **begin_list, char *name)
-{
-	t_visit *lst;
-
-	if (*begin_list)
-	{
-		lst = lm_tovisit_lstnew(name);
-		lst->next = *begin_list;
-		*begin_list = lst;
-	}
-	else
-		*begin_list = lm_tovisit_lstnew(name);
-	return (0);
-}
-
-int		lm_pushback_tovisit(t_visit **begin_list, char *name)
-{
-	t_visit *lst;
-
-	lst = *begin_list;
-	if (lst)
-	{
-		while (lst->next)
-			lst = lst->next;
-		lst->next = lm_tovisit_lstnew(name);
-	}
-	else
-		*begin_list =  lm_tovisit_lstnew(name);
-	return (0);
-}
 
 t_room		*lm_room_lstnew(void)
 {

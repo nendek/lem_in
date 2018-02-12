@@ -1,52 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_get_ants.c                                   :+:      :+:    :+:   */
+/*   parse2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/22 17:30:59 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/12 10:41:33 by pnardozi         ###   ########.fr       */
+/*   Created: 2018/02/12 10:30:35 by pnardozi          #+#    #+#             */
+/*   Updated: 2018/02/12 10:32:55 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int		lm_check_digit(char *line)
+int		lm_parse_tunnel(t_room **room, t_tunnel **tunnel,\
+					int start_end, char *line)
 {
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (!(ft_isdigit(line[i])) || i >= 18)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int				lm_get_ants(int *ants, char *line)
-{
-	long long	nb_ants;
-
-	ft_printf("%s\n", line);
-	if (line[0] == 0)
+	if (start_end != 0)
 	{
 		free(line);
 		return (0);
 	}
-	if (!(lm_check_digit(line)))
+	if ((lm_check_s_e(room)) != 2)
 	{
 		free(line);
 		return (0);
 	}
-	nb_ants = ft_long_atoi(line);
-	if (nb_ants > INT_MAX)
+	if (!(lm_get_tunnel(tunnel, room, line)))
 	{
 		free(line);
 		return (0);
 	}
-	*ants = nb_ants;
 	return (1);
 }
