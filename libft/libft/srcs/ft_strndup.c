@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 16:21:19 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/22 16:41:46 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/13 18:05:18 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strndup(const char *s, int start, int end)
 {
-	char 	*dest;
+	char	*dest;
 	int		i;
 
 	i = 0;

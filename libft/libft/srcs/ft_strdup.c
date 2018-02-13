@@ -6,7 +6,7 @@
 /*   By: pnardozi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 18:25:52 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/11 18:22:30 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/13 18:03:57 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_strdup(const char *s)
 {
 	char	*dest;
-	int	i;
+	int		i;
 
 	i = 0;
 	if (s)
