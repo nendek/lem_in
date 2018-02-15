@@ -6,13 +6,13 @@
 #    By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/19 14:34:26 by pnardozi          #+#    #+#              #
-#    Updated: 2018/02/13 17:49:10 by pnardozi         ###   ########.fr        #
+#    Updated: 2018/02/15 10:34:57 by pnardozi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Werror -Wextra
 
 CHECKER = checker
 

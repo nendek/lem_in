@@ -6,13 +6,13 @@
 #    By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/15 17:28:03 by pnardozi          #+#    #+#              #
-#    Updated: 2018/02/11 18:12:59 by pnardozi         ###   ########.fr        #
+#    Updated: 2018/02/15 10:35:14 by pnardozi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Werror -Wextra
 
 NAME = libftprintf.a
 
