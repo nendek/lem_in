@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 17:32:35 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/12 11:22:16 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/16 11:18:50 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	lm_print_se(t_room **begin_list, int nb_ants)
 
 	i = 0;
 	lst = *begin_list;
-	if (lst->start_end != 2)
+	while (lst->start_end != 2)
 		lst = lst->next;
 	while (i != nb_ants + 1)
 	{
