@@ -77,7 +77,10 @@ static int		lm_parse2(t_tunnel **tunnel, t_room **room,\
 	{
 		index->sec_part = 1;
 		if (!(lm_parse_tunnel(room, tunnel, index->start_end, line)))
+		{
+			lm_remove_endtunnel(tunnel);
 			return (0);
+		}
 	}
 	else
 	{
@@ -98,11 +101,12 @@ int				lm_parse(t_tunnel **tunnel, t_room **room, int *ants)
 	if (get_next_line_one_file(0, &line) == -1)
 	{
 		free(line);
-		return (0);
+		return (-1);
 	}
 	if (!(lm_get_ants(&index.ants, line)))
-		return (0);
+		return (-1);
 	free(line);
+	*ants = index.ants;
 	while (get_next_line_one_file(0, &line) > 0)
 	{
 		ft_printf("%s\n", line);
@@ -110,6 +114,5 @@ int				lm_parse(t_tunnel **tunnel, t_room **room, int *ants)
 			return (0);
 		free(line);
 	}
-	*ants = index.ants;
 	return (1);
 }

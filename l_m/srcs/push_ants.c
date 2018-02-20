@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-void	lm_equalize_ants(int *n_ants, int nb_ants, int nb_road)
+static void	lm_equalize_ants(int *n_ants, int nb_ants, int nb_road)
 {
 	int	i;
 	int	diff;
@@ -34,7 +34,7 @@ void	lm_equalize_ants(int *n_ants, int nb_ants, int nb_road)
 	}
 }
 
-void	lm_equalize_ants2(int *n_ants, int nb_road)
+static void	lm_equalize_ants2(int *n_ants, int nb_road)
 {
 	int		i;
 	int		j;
@@ -58,7 +58,7 @@ void	lm_equalize_ants2(int *n_ants, int nb_road)
 	}
 }
 
-void	lm_distrib_ants(int nb_ants, int nb_road, int *length_road, int *n_ants)
+static void	lm_distrib_ants(int nb_ants, int nb_road, int *length_road, int *n_ants)
 {
 	int		i;
 	int		sum;
@@ -74,7 +74,7 @@ void	lm_distrib_ants(int nb_ants, int nb_road, int *length_road, int *n_ants)
 	lm_equalize_ants2(n_ants, nb_road);
 }
 
-void	lm_affect_ants(int *n_ants, t_room **lst_room, t_visit **lst_road)
+static void	lm_affect_ants(int *n_ants, t_room **lst_room, t_visit **lst_road)
 {
 	char		*start;
 	t_visit		*road;
@@ -106,6 +106,7 @@ int		lm_push_ants(int nb_ants, t_visit **lst_road, t_room **lst_room)
 		return (0);
 	if (!(length_road = malloc(sizeof(int) * nb_road)))
 		return (0);
+	ft_printf("\n");
 	lm_get_length_road(length_road, lst_road, lst_room);
 	lm_distrib_ants(nb_ants, nb_road, length_road, n_ants);
 	lm_affect_ants(n_ants, lst_room, lst_road);

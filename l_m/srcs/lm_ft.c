@@ -16,7 +16,6 @@ int		lm_check_int(long long nb, char *tmp)
 {
 	if (nb > INT_MAX || nb < INT_MIN)
 	{
-		ft_printf("Erreur: nommbre plus grand qu un int\n");
 		free(tmp);
 		return (0);
 	}
@@ -49,11 +48,13 @@ void	lm_print_se(t_room **begin_list, int nb_ants)
 
 	i = 0;
 	lst = *begin_list;
+	ft_printf("\n");
 	while (lst->start_end != 2)
 		lst = lst->next;
-	while (i != nb_ants + 1)
+	while (i != nb_ants)
 	{
-		ft_printf("L%d-%s\n", i, lst->name);
+		ft_printf("L%d-%s ", i, lst->name);
 		i++;
 	}
+	ft_printf("L%d-%s\n", i, lst->name);
 }

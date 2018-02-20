@@ -82,3 +82,25 @@ t_tunnel	*lm_pushback_tunnel(t_tunnel **begin_list)
 		*begin_list = lm_tunnel_lstnew();
 	return (*begin_list);
 }
+
+void		lm_remove_endtunnel(t_tunnel **begin_list)
+{
+	t_tunnel	*lst;
+
+	if (!(begin_list))
+		return ;
+	lst = *begin_list;
+	if (lst->next == NULL)
+		return ;
+	else
+	{
+		while(lst->next->next)
+			lst = lst->next;
+		if (lst->next->name1)
+			free(lst->next->name1);
+		if (lst->next->name2)
+			free(lst->next->name2);
+		free(lst->next);
+		lst->next = NULL;
+	}
+}

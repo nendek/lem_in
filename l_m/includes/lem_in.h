@@ -65,6 +65,7 @@ void					lm_room_free(t_room **begin_list);
 void					lm_tunnel_free(t_tunnel **begin_list);
 void					lm_free_tab(char **tab);
 void					lm_visit_free(t_visit **begin_list);
+void					lm_remove_endtunnel(t_tunnel **begin_list);
 t_visit					*lm_tovisit_lstnew(char *name);
 int						lm_pushback_tovisit(t_visit **begin_list, char *name);
 int						lm_pushfront_tovisit(t_visit **begin_list, char *name);
