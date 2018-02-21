@@ -6,13 +6,13 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 12:54:31 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/13 17:55:02 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/21 12:05:41 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	lm_equalize_ants(int *n_ants, int nb_ants, int nb_road)
+static void		lm_equalize_ants(int *n_ants, int nb_ants, int nb_road)
 {
 	int	i;
 	int	diff;
@@ -34,7 +34,7 @@ static void	lm_equalize_ants(int *n_ants, int nb_ants, int nb_road)
 	}
 }
 
-static void	lm_equalize_ants2(int *n_ants, int nb_road)
+static void		lm_equalize_ants2(int *n_ants, int nb_road)
 {
 	int		i;
 	int		j;
@@ -58,7 +58,8 @@ static void	lm_equalize_ants2(int *n_ants, int nb_road)
 	}
 }
 
-static void	lm_distrib_ants(int nb_ants, int nb_road, int *length_road, int *n_ants)
+static void		lm_distrib_ants(int nb_ants, int nb_road,\
+		int *length_road, int *n_ants)
 {
 	int		i;
 	int		sum;
@@ -74,7 +75,8 @@ static void	lm_distrib_ants(int nb_ants, int nb_road, int *length_road, int *n_a
 	lm_equalize_ants2(n_ants, nb_road);
 }
 
-static void	lm_affect_ants(int *n_ants, t_room **lst_room, t_visit **lst_road)
+static void		lm_affect_ants(int *n_ants, \
+		t_room **lst_room, t_visit **lst_road)
 {
 	char		*start;
 	t_visit		*road;
@@ -95,7 +97,7 @@ static void	lm_affect_ants(int *n_ants, t_room **lst_room, t_visit **lst_road)
 	free(start);
 }
 
-int		lm_push_ants(int nb_ants, t_visit **lst_road, t_room **lst_room)
+int				lm_push_ants(int nb_ants, t_visit **lst_road, t_room **lst_room)
 {
 	int		nb_road;
 	int		*length_road;

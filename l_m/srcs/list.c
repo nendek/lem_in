@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 17:38:17 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/02/12 10:27:58 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/02/21 12:04:33 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,14 @@ void		lm_remove_endtunnel(t_tunnel **begin_list)
 {
 	t_tunnel	*lst;
 
-	if (!(begin_list))
+	if (!(*begin_list))
 		return ;
 	lst = *begin_list;
 	if (lst->next == NULL)
 		return ;
 	else
 	{
-		while(lst->next->next)
+		while (lst->next->next)
 			lst = lst->next;
 		if (lst->next->name1)
 			free(lst->next->name1);
