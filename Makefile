@@ -6,7 +6,7 @@
 #    By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/19 14:34:26 by pnardozi          #+#    #+#              #
-#    Updated: 2018/02/22 10:24:44 by pnardozi         ###   ########.fr        #
+#    Updated: 2018/02/22 10:30:47 by pnardozi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra
 
-LEM_IN = lem_in
+LEM_IN = lem-in
 
 LIBFT_INCLUDES_PATH = ./libft/libft/includes/
 PRINTF_INCLUDES_PATH = ./libft/printf/includes/
